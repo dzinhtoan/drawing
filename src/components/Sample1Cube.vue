@@ -1,0 +1,53 @@
+<template>
+    <div ref="threeContainer"></div>
+</template>
+
+<script lang="ts">
+import { defineComponent, onMounted, ref } from 'vue'
+import * as THREE from 'three';
+
+export default defineComponent({
+    setup() {
+        // init
+
+        const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+        // field of view FOW = 70 degree
+        // aspect ratio = window.innerWidth / window.innerHeight
+        // near 0.01
+        // far 10
+
+        camera.position.z = 1;
+
+        const scene = new THREE.Scene();
+
+        const geometry = new THREE.BoxGeometry( 0.2, 0.2, 0.2 );
+        const material = new THREE.MeshNormalMaterial();
+
+        const cube = new THREE.Mesh( geometry, material );
+        scene.add( cube );
+
+        const renderer = new THREE.WebGLRenderer( { antialias: true } );
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        renderer.setAnimationLoop( animation );
+        
+        // document.body.appendChild( renderer.domElement );
+
+        // animation
+
+        function animation( time ) {
+
+            cube.rotation.x = time / 2000;
+            cube.rotation.y = time / 1000;
+
+            renderer.render( scene, camera );
+
+        }
+        return {
+            renderer
+        }
+    },
+    mounted() {
+        (this.$refs['threeContainer'] as any).appendChild(this.renderer.domElement);
+    },
+})
+</script>
