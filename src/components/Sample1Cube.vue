@@ -11,10 +11,10 @@ export default defineComponent({
         // init
 
         const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
-        // field of view FOW = 70 degree
+        // field of view FOW = 70 degree( range là 1 tới 179 deg )
         // aspect ratio = window.innerWidth / window.innerHeight
-        // near 0.01
-        // far 10
+        // near 0.01 (default là 0.1)
+        // far 10 (default là 2000)
 
         camera.position.z = 1;
 

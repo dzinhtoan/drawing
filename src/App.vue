@@ -17,7 +17,8 @@ import Sample2LineVue from './components/Sample2Line.vue';
     </a>
   </div> -->
   <!-- <HelloWorld msg="Vite + Vue" /> -->
-  <Sample2LineVue />
+  <Sample1CubeVue />
+  <!-- <Sample2LineVue /> -->
 </template>
 
 <style scoped>
