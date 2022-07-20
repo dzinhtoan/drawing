@@ -2,8 +2,7 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 // import HelloWorld from './components/HelloWorld.vue'
-import Sample1CubeVue from './components/Sample1Cube.vue';
-import Sample2LineVue from './components/Sample2Line.vue';
+import ShowRoomVue from './components/ShowRoom.vue';
 
 </script>
 
@@ -17,7 +16,7 @@ import Sample2LineVue from './components/Sample2Line.vue';
     </a>
   </div> -->
   <!-- <HelloWorld msg="Vite + Vue" /> -->
-  <Sample1CubeVue />
+  <ShowRoomVue />
   <!-- <Sample2LineVue /> -->
 </template>
 

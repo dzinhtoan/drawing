@@ -9,8 +9,10 @@ import * as THREE from 'three';
 export default defineComponent({
     setup() {
         // init
+        const initWidth = window.innerWidth - 40;
+        const initHeight = window.innerHeight - 100;
 
-        const camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
+        const camera = new THREE.PerspectiveCamera( 45, initWidth / initHeight, 1, 500 );
         camera.position.set( 0, 0, 100 );
         camera.lookAt( 0, 0, 0 );
 
@@ -32,7 +34,7 @@ export default defineComponent({
         scene.add( line );
 
         const renderer = new THREE.WebGLRenderer();
-        renderer.setSize( window.innerWidth, window.innerHeight );
+        renderer.setSize( initWidth, initHeight );
         renderer.setAnimationLoop( animation );
         // renderer.render( scene, camera );
         

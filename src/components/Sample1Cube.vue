@@ -9,10 +9,11 @@ import * as THREE from 'three';
 export default defineComponent({
     setup() {
         // init
-
-        const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
+        const initWidth = window.innerWidth - 40;
+        const initHeight = window.innerHeight - 100;
+        const camera = new THREE.PerspectiveCamera( 70, initWidth / initHeight, 0.01, 10 );
         // field of view FOW = 70 degree( range là 1 tới 179 deg )
-        // aspect ratio = window.innerWidth / window.innerHeight
+        // aspect ratio = initWidth / initHeight
         // near 0.01 (default là 0.1)
         // far 10 (default là 2000)
 
@@ -27,7 +28,7 @@ export default defineComponent({
         scene.add( cube );
 
         const renderer = new THREE.WebGLRenderer( { antialias: true } );
-        renderer.setSize( window.innerWidth, window.innerHeight );
+        renderer.setSize( initWidth, initHeight );
         renderer.setAnimationLoop( animation );
         
         // document.body.appendChild( renderer.domElement );
