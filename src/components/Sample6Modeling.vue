@@ -23,8 +23,8 @@ export default defineComponent({
         const camera = new THREE.PerspectiveCamera( 70, initWidth.value / initHeight.value, 0.01, 1000 );
         // camera.position.z = 2
         camera.position.z = 50;
-        camera.position.y = 50;
-        camera.position.x = -50;
+        camera.position.y = 30;
+        camera.position.x = -20;
 
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize( initWidth.value, initHeight.value );
