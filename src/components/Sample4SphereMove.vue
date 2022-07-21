@@ -21,7 +21,9 @@ export default defineComponent({
         scene.background = new THREE.Color( 'skyblue' );
 
         const camera = new THREE.PerspectiveCamera( 70, initWidth.value / initHeight.value, 0.01, 1000 );
-        camera.position.z = 3
+        camera.position.z = 4;
+        camera.position.y = 4;
+        camera.position.x = -4;
 
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize( initWidth.value, initHeight.value );
@@ -89,7 +91,10 @@ export default defineComponent({
 
         // const ctrDrag = new DragControls([sphere], camera, renderer.domElement);
         // const ctrPointerLock = new PointerLockControls(camera, renderer.domElement)
-        
+
+        // The X axis is red. The Y axis is green. The Z axis is blue.
+        const axesHelper = new THREE.AxesHelper(4);
+        scene.add( axesHelper );
         
         return {
             renderer,

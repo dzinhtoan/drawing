@@ -18,7 +18,6 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
     // command === 'build'
     return {
       // build specific config
-      // dev specific config
       plugins: [vue()],
       resolve: {
         alias: {

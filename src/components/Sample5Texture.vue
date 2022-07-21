@@ -155,6 +155,9 @@ export default defineComponent({
         const meshTorus = new THREE.Mesh(geoTorus, materialTorus)
         scene.add(meshTorus)
 
+        const axesHelper = new THREE.AxesHelper( 3 );
+        scene.add( axesHelper );
+
         return {
             renderer,
             gameLoop,

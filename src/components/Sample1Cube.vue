@@ -43,6 +43,11 @@ export default defineComponent({
             renderer.render( scene, camera );
 
         }
+
+        // The X axis is red. The Y axis is green. The Z axis is blue.
+        const axesHelper = new THREE.AxesHelper( 1 );
+        scene.add( axesHelper );
+
         return {
             renderer
         }
