@@ -11,7 +11,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
           '@': path.resolve(__dirname, './src'),
         },
       },
-      base: env.PROD ? '/drawing' : '/'
+      base: env.PROD ? '/drawing/' : '/'
   }
   return config;
 })
