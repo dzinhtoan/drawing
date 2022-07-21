@@ -2,15 +2,30 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
-  base: process.env.NODE_ENV === 'production'
-  ? '/drawing/' // Thay tên repository của các bạn vào đây nhé
-  : '/',
+export default defineConfig(({ command, mode, ssrBuild }) => {
+  if (command === 'serve') {
+    return {
+      // dev specific config
+      plugins: [vue()],
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, './src'),
+        },
+      },
+      base:'/',
+    }
+  } else {
+    // command === 'build'
+    return {
+      // build specific config
+      // dev specific config
+      plugins: [vue()],
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, './src'),
+        },
+      },
+      base:'/drawing/',
+    }
+  }
 })
