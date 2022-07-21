@@ -16,6 +16,7 @@ import Sample2LineVue from './Sample2Line.vue';
 import Sample3Sphere from './Sample3Sphere.vue';
 import Sample4SphereMove from './Sample4SphereMove.vue';
 import Sample5TextureVue from './Sample5Texture.vue';
+import Sample6ModelingVue from './Sample6Modeling.vue';
 
 
 export default defineComponent({
@@ -41,6 +42,10 @@ export default defineComponent({
             { 
                 name: 'Simple Texture',
                 component: Sample5TextureVue
+            },
+            { 
+                name: 'Simple Modeling',
+                component: Sample6ModelingVue
             },
         ]
 
