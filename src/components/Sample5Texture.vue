@@ -35,12 +35,12 @@ export default defineComponent({
 
         // Load hình cho 6 mặt
         const textureLoader = new THREE.TextureLoader();
-        const texture0 = textureLoader.load('/images/olli/olli-tabumi-next.jpg');
-        const texture1 = textureLoader.load('/images/olli/olli-tamibu-2.jpg');
-        const texture2 = textureLoader.load('/images/olli/olli-tabumi-1.jpg');
-        const texture3 = textureLoader.load('/images/olli/olli-tabumi-3.jpg');
-        const texture4 = textureLoader.load('/images/olli/olli-tabumi-4.jpg');
-        const texture5 = textureLoader.load('/images/olli/olli-tabumi-hand.jpg');
+        const texture0 = textureLoader.load(new URL('../assets/images/olli/olli-tabumi-next.jpg', import.meta.url).href);
+        const texture1 = textureLoader.load(new URL('../assets/images/olli/olli-tamibu-2.jpg', import.meta.url).href);
+        const texture2 = textureLoader.load(new URL('../assets/images/olli/olli-tabumi-1.jpg', import.meta.url).href);
+        const texture3 = textureLoader.load(new URL('../assets/images/olli/olli-tabumi-3.jpg', import.meta.url).href);
+        const texture4 = textureLoader.load(new URL('../assets/images/olli/olli-tabumi-4.jpg', import.meta.url).href);
+        const texture5 = textureLoader.load(new URL('../assets/images/olli/olli-tabumi-hand.jpg', import.meta.url).href);
         const material = [
             new THREE.MeshLambertMaterial({map: texture0, side: THREE.DoubleSide}), //right
             // new THREE.MeshLambertMaterial({color: '#271952'}), //right
