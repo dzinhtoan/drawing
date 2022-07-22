@@ -16,7 +16,9 @@ import ShowRoomVue from './components/ShowRoom.vue';
     </a>
   </div> -->
   <!-- <HelloWorld msg="Vite + Vue" /> -->
-  <ShowRoomVue />
+  <div class="base-container">
+    <ShowRoomVue />
+  </div>
   <!-- <Sample2LineVue /> -->
 </template>
 
@@ -31,5 +33,13 @@ import ShowRoomVue from './components/ShowRoom.vue';
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+.base-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.base-container > .el-tabs {
+    height: fit-content;
 }
 </style>

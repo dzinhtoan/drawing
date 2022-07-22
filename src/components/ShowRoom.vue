@@ -1,16 +1,16 @@
 <template>
-    <el-tabs type="border-card" class="demo-tabs">
-        <el-tab-pane v-for="(tab, index) in productList" :key="index">
-            <template #label>
-                <span>{{tab.name}}</span>
-            </template>
+    <el-tabs type="border-card" class="demo-tabs" v-model="tabName">
+        <el-tab-pane v-for="(tab, index) in productList" :key="index" :name="tab.name">
+                <template #label>
+                    <span>{{tab.name}}</span>
+                </template>
             <component :is="tab.component"></component>
         </el-tab-pane>
     </el-tabs>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import Sample1CubeVue from './Sample1Cube.vue';
 import Sample2LineVue from './Sample2Line.vue';
 import Sample3Sphere from './Sample3Sphere.vue';
@@ -49,8 +49,11 @@ export default defineComponent({
             },
         ]
 
+        const tabName = ref(productList[5].name)
+
         return {
-            productList
+            productList,
+            tabName
         }
     },
 })
