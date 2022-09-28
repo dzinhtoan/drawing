@@ -34,6 +34,9 @@ export default defineComponent({
 
         const sphere = new THREE.Mesh(geometry, material);
         scene.add( sphere );
+
+        var grid = new THREE.GridHelper(10, 10);
+        scene.add(grid);
         
         const ctrTrackball = new TrackballControls(camera, renderer.domElement)
         
