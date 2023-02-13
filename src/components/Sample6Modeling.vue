@@ -83,7 +83,8 @@ export default defineComponent({
          * Light - end
          */
         const loader = new GLTFLoader();
-        const modelUrl = new URL('../assets/models/glb/Totoro.glb', import.meta.url).href;
+        // const modelUrl = new URL('../assets/models/glb/Totoro.glb', import.meta.url).href;
+        const modelUrl = new URL('../assets/models/glb/PinkGLTB.glb', import.meta.url).href;
         console.log('meta url', modelUrl);
         
         loader.load( modelUrl, function ( gltf ) {
