@@ -11,7 +11,7 @@
 
     const gui = new dat.GUI();
     const settings = {
-        speed: 0.2,
+        speed: 0.05,
         density: 1.5,
         strength: 0.2,
         frequency: 3.0,
@@ -200,14 +200,15 @@
   void main() {
     float distort = vDistort * uIntensity;
     
-    vec3 brightness = vec3(0.5, 0.5, 0.5);
+    vec3 brightness = vec3(0.09, 0.20, 0.99);
     vec3 contrast = vec3(0.5, 0.5, 0.5);
     vec3 oscilation = vec3(1.0, 1.0, 1.0);
-    vec3 phase = vec3(0.0, 0.1, 0.2);
+    vec3 phase = vec3(1, 1, 1);
   
     vec3 color = cosPalette(distort, brightness, contrast, oscilation, phase);
     
     gl_FragColor = vec4(color, 1.0);
+
   }  
 `;
 
