@@ -16,14 +16,19 @@
         strength: 0.2,
         frequency: 3.0,
         amplitude: 6.0,
+        intensity: 7.0,
     };
     const folder1 = gui.addFolder('Noise');
     const folder2 = gui.addFolder('Rotation');
+    const folder3 = gui.addFolder('Color');
     folder1.add(settings, 'speed', 0.1, 1, 0.01);
     folder1.add(settings, 'density', 0, 10, 0.01);
     folder1.add(settings, 'strength', 0, 2, 0.01);
     folder2.add(settings, 'frequency', 0, 10, 0.1);
     folder2.add(settings, 'amplitude', 0, 10, 0.1);
+    folder3.add(settings, 'intensity', 0, 10, 0.1);
+
+
     const noise = `
   // GLSL textureless classic 3D noise "cnoise",
   // with an RSL-style periodic variant "pnoise".
@@ -151,7 +156,8 @@
 `;
 
     const vertexShader = `  
-  varying vec3 vNormal;
+  varying vec2 vUv;
+  varying float vDistort;
   
   uniform float uTime;
   uniform float uSpeed;
@@ -165,6 +171,8 @@
   ${rotation}
   
   void main() {
+    vUv = uv;
+    
     float t = uTime * uSpeed;
     float distortion = pnoise((normal + t) * uNoiseDensity, vec3(10.0)) * uNoiseStrength;
 
@@ -172,21 +180,34 @@
     float angle = sin(uv.y * uFrequency + t) * uAmplitude;
     pos = rotateY(pos, angle);    
     
-    vNormal = normal;
+    vDistort = distortion;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.);
   }  
 `;
 
     const fragmentShader = `
-  varying vec3 vNormal;
+  varying vec2 vUv;
+  varying float vDistort;
   
   uniform float uTime;
+  uniform float uIntensity;
+  
+  vec3 cosPalette(float t, vec3 a, vec3 b, vec3 c, vec3 d) {
+    return a + b * cos(6.28318 * (c * t + d));
+  }     
   
   void main() {
-    vec3 color = vec3(1.0);
+    float distort = vDistort * uIntensity;
     
-    gl_FragColor = vec4(vNormal, 1.0);
+    vec3 brightness = vec3(0.5, 0.5, 0.5);
+    vec3 contrast = vec3(0.5, 0.5, 0.5);
+    vec3 oscilation = vec3(1.0, 1.0, 1.0);
+    vec3 phase = vec3(0.0, 0.1, 0.2);
+  
+    vec3 color = cosPalette(distort, brightness, contrast, oscilation, phase);
+    
+    gl_FragColor = vec4(color, 1.0);
   }  
 `;
 
@@ -206,7 +227,7 @@
     renderer.setClearColor('black', 1);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('skyblue');
+    // scene.background = new THREE.Color('skyblue');
 
     const clock = new THREE.Clock();
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -232,8 +253,9 @@
                 uNoiseStrength: { value: settings.strength },
                 uFrequency: { value: settings.frequency },
                 uAmplitude: { value: settings.amplitude },
+                uIntensity: { value: settings.intensity },
             },
-            wireframe: true,
+            // wireframe: true,
         });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
@@ -268,6 +290,7 @@
         mesh.material.uniforms.uNoiseStrength.value = settings.strength;
         mesh.material.uniforms.uFrequency.value = settings.frequency;
         mesh.material.uniforms.uAmplitude.value = settings.amplitude;
+        mesh.material.uniforms.uIntensity.value = settings.intensity;
 
         renderer.render(scene, camera);
     }
